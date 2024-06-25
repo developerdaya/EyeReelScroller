@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CAMERA" />
+        <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@drawable/artificial_intelligence"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/artificial_intelligence"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ScrollReel"
+        tools:targetApi="31">
+        <service
+            android:name=".util.MyAccessibilityService"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/service_config" />
+        </service>
+
+        <service
+            android:name=".util.CameraLivenessService"
+            android:exported="false"
+            android:foregroundServiceType="camera">
+        </service>
+
+
+
+        <activity
+            android:name=".liveness.DrawScreen2"
+            android:exported="true">
+
+        </activity>
+
+
+        <activity
+            android:name=".liveness.LivenessActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+        <activity
+            android:name=".liveness.MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.ScrollReel">
+
+        </activity>
+    </application>
+
+</manifest>
